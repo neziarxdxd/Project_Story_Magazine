@@ -1,0 +1,19 @@
+	
+		body{
+			background:black;		
+		}
+		.StoryArea{
+			
+			
+			background: #ffffff;
+			margin: 8%;
+			padding: 8%;
+			
+		}
+	
+		.sentButton{
+			text-align: right;
+		}
+		h1 #center{
+			text-align: center;
+		}

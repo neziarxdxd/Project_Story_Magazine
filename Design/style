@@ -1,0 +1,11 @@
+	
+		.StoryArea{
+			padding-top: 5%;	
+			padding:10%;
+		}
+		.sentButton{
+			text-align: right;
+		}
+		h1 #center{
+			text-align: center;
+		}
