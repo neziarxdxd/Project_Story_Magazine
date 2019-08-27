@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        body{
+            display: flex;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            }
+        #uploader{
+            -webkit-appearance: none;
+            appearance: none;
+            width: 50%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="rates">
+    <progress value="0" max="100" id="uploader">0%</progress>
+    <input type="file" id="fileButton" value="upload">
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script>
+                    
+
+        var firebaseConfig = {
+                apiKey: "AIzaSyB3iOA424jKYZAgMfPDM3qXc6Z2isbg_Qs",
+                authDomain: "myfirstapp-5390e.firebaseapp.com",
+                databaseURL: "https://myfirstapp-5390e.firebaseio.com",
+                projectId: "myfirstapp-5390e",
+                storageBucket: "myfirstapp-5390e.appspot.com",
+                messagingSenderId: "899197736247",            
+                appId: "1:899197736247:web:eb20d1284ca521d5"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        //get Elements
+        var rates= document.getElementById('rates');
+        var uploader= document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton');
+        //List
+
+        fileButton.addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef=firebase.storage().ref('folder_name/' +file.name );
+            
+            var task =storageRef.put(file); 
+            task.on('state_changed',
+                function progress(snapshot){
+                    var percentage= (snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+                    rates.value=percentage;
+                    uploader.value=percentage;
+                },
+                function error (err){
+
+                },
+                function complete(){
+
+                }
+            
+            );
+
+        });
+
+    
+    
+    </script>
+    
+
+</body>
+</html>
