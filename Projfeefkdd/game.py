@@ -1,1 +1,1 @@
-print("hello Wolrd")
+money = input("Enter your money ")
